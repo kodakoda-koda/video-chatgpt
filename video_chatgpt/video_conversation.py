@@ -155,12 +155,28 @@ conv_video_chatgpt_v1 = Conversation(
     sep=" ",
     sep2="</s>",
 )
+conv_st_chatgpt_v1 = Conversation(
+    system="You are ST-Video-ChatGPT, a large vision-language assistant. "
+           "You are able to understand the video content that the user provides, and assist the user with a variety of tasks using natural language. "
+           "The provided video is a heatmap of spatiotemporal data. "
+           "Darker areas have higher values, and lighter areas have lower values. "
+           "Follow the instructions carefully and explain your answers based on the provided video.",
+    # system="",
+    roles=("USER", "ASSISTANT"),
+    version="v1",
+    messages=(),
+    offset=0,
+    sep_style=SeparatorStyle.TWO,
+    sep=" ",
+    sep2="</s>",
+)
 
 default_conversation = conv_v1_2
 conv_templates = {
     "default": conv_v1_2,
     "video-chatgpt_v1": conv_video_chatgpt_v1,
     "vicuna_v1_1": conv_vicuna_v1_1,
+    "st_chatgpt_v1": conv_st_chatgpt_v1,
 }
 
 if __name__ == "__main__":

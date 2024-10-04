@@ -146,7 +146,7 @@ def parse_args():
     parser.add_argument("--vision_tower_name", type=str, default="openai/clip-vit-large-patch14")
     parser.add_argument("--projection_path", type=str, required=False, default="")
     parser.add_argument("--video_path", type=str, required=True, default="")
-    parser.add_argument("--conv_mode", type=str, required=False, default='video-chatgpt_v1')
+    parser.add_argument("--conv_mode", type=str, required=False, default='st-chatgpt_v1')
 
     args = parser.parse_args()
 
@@ -163,7 +163,7 @@ if __name__ == "__main__":
 
     if os.path.exists(video_path):
         video_frames = load_video(video_path)
-    
+
     question = input("Enter a question to check from the video:")
     conv_mode = args.conv_mode
 
@@ -172,6 +172,6 @@ if __name__ == "__main__":
         output = video_chatgpt_infer(video_frames, question, conv_mode, model, vision_tower,
                                             tokenizer, image_processor, video_token_len)
         print("\n\n", output)
-        
+
     except Exception as e:
         print(f"Error processing video file '{video_path}': {e}")
